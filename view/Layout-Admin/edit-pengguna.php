@@ -8,7 +8,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Dashboard Admin</title>
+    <title>Edit Data Pengguna</title>
 
     <!-- Custom fonts for this template-->
     <!-- <link
@@ -39,7 +39,7 @@
 
     // cek apakah yang mengakses halaman ini sudah login
     if ($_SESSION['jenis_user'] !== "admin") {
-        header("location:../../index.php?pesan=gagal");
+        header("location:../../login.php?pesan=gagal");
     }
 
     ?>
@@ -49,7 +49,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard-admin.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../Dashboard/dashboard-admin.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>

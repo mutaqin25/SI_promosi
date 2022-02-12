@@ -8,7 +8,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Dashboard Admin</title>
+    <title>Dashboard Marketing</title>
 
     <!-- Custom fonts for this template-->
 
@@ -25,7 +25,7 @@
 
     // cek apakah yang mengakses halaman ini sudah login
     if ($_SESSION['jenis_user'] !== "marketing") {
-        header("location:../../index.php?pesan=gagal");
+        header("location:../../login.php?pesan=gagal");
     }
 
     ?>
@@ -35,7 +35,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard-admin.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard-marketing.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -47,20 +47,26 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="dashboard-marketing.html">
+                <a class="nav-link" href="dashboard-marketing.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
 
             <li class="nav-item active">
-                <a class="nav-link" href="view/Pengguna/pengguna.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                <a class="nav-link" href="../Layout-Marketing/form-produk.php">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span>Produk</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="../Layout-Marketing/form-promosi.php">
+                    <i class="fa-solid fa-tags"></i>
                     <span>Promosi</span></a>
             </li>
 
             <li class="nav-item active">
-                <a class="nav-link" href="view/Pengguna/pengguna.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                <a class="nav-link" href="../Layout-Marketing/form-pelanggan.php">
+                    <i class="fa-solid fa-user"></i>
                     <span>Pelanggan</span></a>
             </li>
 
@@ -484,6 +490,7 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
+    <script src="https://kit.fontawesome.com/f6531d317e.js" crossorigin="anonymous"></script>
     <script src="../../vendor/jquery/jquery.min.js"></script>
     <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
