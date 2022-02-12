@@ -1,4 +1,6 @@
 <?php
+// mengaktifkan session pada php
+session_start();
 
 $conn = mysqli_connect("localhost", "root", "", "si_promosi");
 

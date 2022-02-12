@@ -59,14 +59,6 @@
   </head>
   <body>
 
-  <?php 
-	if(isset($_GET['pesan'])){
-		if($_GET['pesan']=="gagal"){
-			echo "<div class='alert'>Username dan Password tidak sesuai !</div>";
-		}
-	}
-	?>
-
     <div class="limiter">
       <div
         class="container-login100"
@@ -149,5 +141,29 @@
     <script src="vendor/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
     <script src="js/main.js"></script>
+    <!--===============================================================================================-->
+    <script src="js/sweetalert.min.js"></script>
   </body>
 </html>
+
+<!-- alert login -->
+<?php 
+	if(isset($_GET['pesan'])){
+    if($_GET['pesan']=="gagal"){
+      ?>
+      <script>
+        swal({
+          title: "Failed!",
+          text: "Username dan Password tidak sesuai !",
+          icon: "warning",
+          button: false,
+          timer: 3000,
+        }).then(function() {
+            window.location = "index.php";
+        });
+      </script>
+      <?php
+			// echo "<div class='alert'>Username dan Password tidak sesuai !</div>";
+    }
+  }
+?>

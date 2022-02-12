@@ -1,3 +1,6 @@
+<?php
+include '../../config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +38,6 @@
 <body id="page-top">
 
     <?php
-    session_start();
 
     // cek apakah yang mengakses halaman ini sudah login
     if ($_SESSION['jenis_user'] !== "admin") {
@@ -141,22 +143,25 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Tabel Pengguna</h1>
                     <p class="mb-4">
-                        <?php if (isset($_GET['status'])) : ?>
+                        <?php if (isset($_SESSION['status'])) : ?>
                     <p>
+                        <!-- alert -->
                         <?php
-                            if ($_SESSION['status'] == 'sukses') { ?>
-                    <div class="alert alert-success" role="alert">
-                        <strong>Sukses!</strong> Data Berhasil Disimpan
-                    </div>
-                <?php
-                            } else { ?>
-                    <div class="alert alert-success" role="alert">
-                        <strong>Sukses!</strong> Data Gagal Disimpan
-                    </div>
-                <?php
-                            }
-                ?>
-                </p>
+                        if($_SESSION['status'] == 'sukses'){
+                        ?>
+                        <div class="alert alert-success" role="alert" id="alert-success">
+                            <span id="message-success"></span>
+                        </div>
+                        <?php
+                        }elseif($_SESSION['status'] == "gagal"){
+                        ?>
+                        <div class="alert alert-success" role="alert"  id="alert-warning">
+                            <span id="message-warning"></span>
+                        </div>
+                        <?php
+                        }
+                        ?>
+                    </p>
             <?php endif; ?>
             <a class="btn btn-primary" href="tambah-pengguna.php" role="button">Tambah Data</a>
             </p>
@@ -192,7 +197,6 @@
                             </tfoot>
                             <tbody>
                                 <?php
-                                include '../../config.php';
                                 $no = 1;
                                 $data = mysqli_query($conn, "select * from pengguna");
                                 while ($d = mysqli_fetch_array($data)) {
@@ -268,14 +272,39 @@
         $(function() {
             $('[data-toggle="tooltip"]').tooltip()
         })
-
-
-        window.setTimeout(function() {
-            $(".alert").fadeTo(500, 0).slideUp(500, function() {
-                $(this).remove();
-            });
-        }, 5000);
     </script>
+
+    <!-- alert fade Out-->
+    <?php
+
+    if($_SESSION['status'] == "sukses"){
+        ?>
+        <script>
+            document.getElementById('message-success').innerHTML = "<?=$_SESSION['message'];?>";
+            window.setTimeout(function() {
+                $("#alert-success").fadeTo(500, 0).slideUp(500, function() {
+                    $(this).remove();
+                });
+            }, 3000);
+        </script>
+        <?php
+        unset($_SESSION['status']);
+        unset($_SESSION['message']);
+    }elseif($_SESSION['status'] == "gagal"){
+        ?>
+        <script>
+            document.getElementById('message-warning').innerHTML = "<?=$_SESSION['message'];?>";
+            window.setTimeout(function() {
+                $("#alert-warning").fadeTo(500, 0).slideUp(500, function() {
+                    $(this).remove();
+                });
+            }, 3000);
+        </script>
+        <?php
+        unset($_SESSION['status']);
+        unset($_SESSION['message']);
+    }
+    ?>
 
     <!-- fontawasome -->
     <script src="https://kit.fontawesome.com/f6531d317e.js" crossorigin="anonymous"></script>

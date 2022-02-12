@@ -28,7 +28,7 @@
     session_start();
 
     // cek apakah yang mengakses halaman ini sudah login
-    if ($_SESSION['jenis_user'] !== "admin") {
+    if ($_SESSION['jenis_user'] != "admin") {
         header("location:../../index.php?pesan=gagal");
     }
 
