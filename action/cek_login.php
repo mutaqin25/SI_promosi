@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 <?php
 // mengaktifkan session pada php
 session_start();
 
+=======
+<?php 
+ 
+>>>>>>> a243c9e766561f688014b1c2f5828d499275c39b
 // menghubungkan php dengan koneksi database
 include '../config.php';
 

@@ -28,8 +28,13 @@
     session_start();
 
     // cek apakah yang mengakses halaman ini sudah login
+<<<<<<< HEAD
     if ($_SESSION['jenis_user'] !== "admin") {
         header("location:../../login.php?pesan=gagal");
+=======
+    if ($_SESSION['jenis_user'] != "admin") {
+        header("location:../../index.php?pesan=gagal");
+>>>>>>> a243c9e766561f688014b1c2f5828d499275c39b
     }
 
     ?>
