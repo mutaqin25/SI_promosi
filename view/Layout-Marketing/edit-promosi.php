@@ -1,7 +1,20 @@
-<?php
+<?
 include '../../config.php';
-?>
+$datax = [];
+$query = mysqli_query($conn, "SELECT * FROM promosi WHERE kd_promosi ='$_GET[id]'");
+$i = 0;
+while($dt = mysqli_fetch_array($query)){
+    $datax[$i][0] = $dt['periklanan'];
+    $datax[$i][1] = $dt['penjualanpersonal'];
+    $datax[$i][2] = $dt['promosipenjualan'];
+    $datax[$i][3] = $dt['publisitas'];
+    $datax[$i][4] = $dt['pemasaranlangsung'];
+    $datax[$i][5] = $dt['id_produk'];
 
+    $i++;
+}
+$datas = [1,2,3,4,5];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +25,7 @@ include '../../config.php';
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Edit Data Promosi</title>
+    <title>Input Data Promosi</title>
 
     <!-- Custom fonts for this template-->
     <!-- <link
@@ -42,7 +55,7 @@ include '../../config.php';
 
     // cek apakah yang mengakses halaman ini sudah login
     if ($_SESSION['jenis_user'] !== "marketing") {
-        header("location:../../login.php?");
+        header("location:../../login.php?pesan=gagal");
     }
 
     ?>
@@ -135,10 +148,6 @@ include '../../config.php';
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -156,147 +165,488 @@ include '../../config.php';
                     <!-- Page Heading -->
                     <div>
                         <h1 class="h3 mb-2 text-gray-800">Edit Data Promosi</h1>
-                        <hr>
+                        <form method="post" action="../../action/edit-promosi.php">
+                            <select style="width: 30%;" required name="id_produk" class="custom-select my-1 mr-sm-2">
+                                <option>Pilih Produk....</option>
+                                <?php
+                                $no = 0;
+                                $data = mysqli_query($conn, "select * from produk");
+                                while ($d = mysqli_fetch_array($data)) {
+                                    $no++;
+                                    if($datax[0][5] == $d['id_produk']){
+                                        echo "<option selected value='$d[id_produk]'>$d[nama_produk]</option>";
+                                    }else{
+                                        echo "<option value='$d[id_produk]'>$d[nama_produk]</option>";
+                                    }
+                                ?>
+                                    <!-- <option selected>Choose...</option> -->
+                                <?php
+                                } ?>
+                            </select>
+
+                            <hr>
                     </div>
                     <div>
-                        <?php
-                        $id = $_GET['id'];
-                        $data = mysqli_query($conn, "select * from promosi where id_promosi='$id'");
-                        while ($d = mysqli_fetch_array($data)) {
-                        ?>
-                            <form method="post" action="../../action/edit-promosi.php">
-                                <div class="form-group row">
 
-                                    <div class="col-sm-5">
-                                        <input type="text" name="id_promosi" value="<?php echo $d['id_promosi'] ?>" class="form-control" hidden>
-                                    </div>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>
+                                    <center>#</center>
+                                </th>
+                                <th>
+                                    Periklanan
+                                </th>
+                                <th>
+                                    Penjualan
+                                </th>
+                                <th>
+                                    Promosi Penjualan
+                                </th>
+                                <th>
+                                    Punlisitas
+                                </th>
+                                <th>
+                                    Pemasaran Langsung
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>A1</b>
+                                </td>
+                                <td>
+                                    <input type="hidden" name="id" value="<?=$_GET['id'];?>">
+                                    <select name="periklanan1" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            
+                                            if($datax[0][0] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="pen_per1" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[0][1] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="pro_pen1" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[0][2] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="publisitas1" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[0][3] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="pem_lan1" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php
+                                            foreach($datas as $val){
+                                                if($datax[0][4] == $val){
+                                                    echo "<option selected value='$val'>$val</option>";
+                                                }else{
+                                                    echo "<option value='$val'>$val</option>";
+                                                }
+                                            }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>A2</b>
+                                </td>
+                                <td>
+                                    <select name="periklanan2" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[1][0] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="pen_per2" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[1][1] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="pro_pen2" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[1][2] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="publisitas2" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[1][3] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="pem_lan2" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[1][4] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>A3</b>
+                                </td>
+                                <td>
+                                    <select name="periklanan3" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[1][0] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="pen_per3" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[2][1] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="pro_pen3" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[2][2] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="publisitas3" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[2][3] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="pem_lan3" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[2][4] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>A4</b>
+                                </td>
+                                <td>
+                                    <select name="periklanan4" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[2][0] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="pen_per4" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[3][1] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="pro_pen4" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[3][2] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="publisitas4" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[3][3] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="pem_lan4" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                    <?php 
+                                        foreach($datas as $val){
+                                            if($datax[3][4] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>A5</b>
+                                </td>
+                                <td>
+                                    <select name="periklanan5" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[4][0] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="pen_per5" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[4][1] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="pro_pen5" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[4][2] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="publisitas5" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[4][3] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="pem_lan5" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[4][4] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label">Periklanan</label>
+                                <div class="col-sm-5">
+                                    <select name="periklanan" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[0][0] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-2 col-form-label">Periklanan</label>
-                                    <div class="col-sm-5">
-                                        <select name="periklanan" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                            <option selected>Choose...</option>
-                                            <option value="1" <? if ($d['periklanan'] == "1") {
-                                                                    echo "selected";
-                                                                } ?>>1</option>
-                                            <option value="2" <? if ($d['periklanan'] == "2") {
-                                                                    echo "selected";
-                                                                } ?>>2</option>
-                                            <option value="3" <? if ($d['periklanan'] == "3") {
-                                                                    echo "selected";
-                                                                } ?>>3</option>
-                                            <option value="4" <? if ($d['periklanan'] == "4") {
-                                                                    echo "selected";
-                                                                } ?>>4</option>
-                                            <option value="5" <? if ($d['periklanan'] == "5") {
-                                                                    echo "selected";
-                                                                } ?>>5</option>
-                                        </select>
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label">Penjulan Personal</label>
+                                <div class="col-sm-5">
+                                    <select name="pen_per" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[0][0] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-2 col-form-label">Penjulan Personal</label>
-                                    <div class="col-sm-5">
-                                        <select name="pen_per" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                            <option selected>Choose...</option>
-                                            <option value="1" <? if ($d['penjualanpersonal'] == "1") {
-                                                                    echo "selected";
-                                                                } ?>>1</option>
-                                            <option value="2" <? if ($d['penjualanpersonal'] == "2") {
-                                                                    echo "selected";
-                                                                } ?>>2</option>
-                                            <option value="3" <? if ($d['penjualanpersonal'] == "3") {
-                                                                    echo "selected";
-                                                                } ?>>3</option>
-                                            <option value="4" <? if ($d['penjualanpersonal'] == "4") {
-                                                                    echo "selected";
-                                                                } ?>>4</option>
-                                            <option value="5" <? if ($d['penjualanpersonal'] == "5") {
-                                                                    echo "selected";
-                                                                } ?>>5</option>
-                                        </select>
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label">Promosi Penjualan</label>
+                                <div class="col-sm-5">
+                                    <select name="pro_pen" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[0][0] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-2 col-form-label">Promosi Penjualan</label>
-                                    <div class="col-sm-5">
-                                        <select name="pro_pen" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                            <option selected>Choose...</option>
-                                            <option value="1" <? if ($d['promosipenjualan'] == "1") {
-                                                                    echo "selected";
-                                                                } ?>>1</option>
-                                            <option value="2" <? if ($d['promosipenjualan'] == "2") {
-                                                                    echo "selected";
-                                                                } ?>>2</option>
-                                            <option value="3" <? if ($d['promosipenjualan'] == "3") {
-                                                                    echo "selected";
-                                                                } ?>>3</option>
-                                            <option value="4" <? if ($d['promosipenjualan'] == "4") {
-                                                                    echo "selected";
-                                                                } ?>>4</option>
-                                            <option value="5" <? if ($d['promosipenjualan'] == "5") {
-                                                                    echo "selected";
-                                                                } ?>>5</option>
-                                        </select>
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label">Publisitas</label>
+                                <div class="col-sm-5">
+                                    <select name="publisitas" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <?php 
+                                        foreach($datas as $val){
+                                            if($datax[0][0] == $val){
+                                                echo "<option selected value='$val'>$val</option>";
+                                            }else{
+                                                echo "<option value='$val'>$val</option>";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-2 col-form-label">Publisitas</label>
-                                    <div class="col-sm-5">
-                                        <select name="publisitas" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                            <option selected>Choose...</option>
-                                            <option value="1" <? if ($d['publisitas'] == "1") {
-                                                                    echo "selected";
-                                                                } ?>>1</option>
-                                            <option value="2" <? if ($d['publisitas'] == "2") {
-                                                                    echo "selected";
-                                                                } ?>>2</option>
-                                            <option value="3" <? if ($d['publisitas'] == "3") {
-                                                                    echo "selected";
-                                                                } ?>>3</option>
-                                            <option value="4" <? if ($d['publisitas'] == "4") {
-                                                                    echo "selected";
-                                                                } ?>>4</option>
-                                            <option value="5" <? if ($d['publisitas'] == "5") {
-                                                                    echo "selected";
-                                                                } ?>>5</option>
-                                        </select>
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label">Pemasaran Langsung</label>
+                                <div class="col-sm-5">
+                                    <select name="pem_lan" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                        <option selected>Choose...</option>
+                                        <option value="1">1</option>
+                                        <option value="1">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-2 col-form-label">Pemasaran Langsung</label>
-                                    <div class="col-sm-5">
-                                        <select name="pem_lan" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                            <option selected>Choose...</option>
-                                            <option value="1" <? if ($d['pemasaranlangsung'] == "1") {
-                                                                    echo "selected";
-                                                                } ?>>1</option>
-                                            <option value="2" <? if ($d['pemasaranlangsung'] == "2") {
-                                                                    echo "selected";
-                                                                } ?>>2</option>
-                                            <option value="3" <? if ($d['pemasaranlangsung'] == "3") {
-                                                                    echo "selected";
-                                                                } ?>>3</option>
-                                            <option value="4" <? if ($d['pemasaranlangsung'] == "4") {
-                                                                    echo "selected";
-                                                                } ?>>4</option>
-                                            <option value="5" <? if ($d['pemasaranlangsung'] == "5") {
-                                                                    echo "selected";
-                                                                } ?>>5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-2 col-form-label"></label>
-                                    <div class="col-sm-10">
-                                        <button type="submit" value="simpan" name="simpan" class="btn btn-primary" style="width: 24%;">Simpan</button>
-                                        <a class="btn btn-success" href="form-promosi.php" role="button" style="width: 24%;">Kembali</a>
-                                    </div>
-                                </div>
-                            </form>
-                        <?
-                        }
-                        ?>
+                            </div> -->
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-12" style="text-align:right">
+                                <button type="submit" value="simpan" name="simpan" class="btn btn-primary col-sm-2">Simpan</button>
+                                <a class="btn btn-success  col-sm-2" href="form-promosi.php" role="button">Kembali</a>
+                            </div>
+                        </div>
+                        </form>
                     </div>
 
                     <!-- DataTales Example -->

@@ -155,22 +155,25 @@ include '../../config.php';
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Tabel Data Promosi</h1>
                     <p class="mb-4">
-                        <?php if (isset($_GET['status'])) : ?>
+                    <?php if (isset($_SESSION['status'])) : ?>
                     <p>
+                        <!-- alert -->
                         <?php
-                            if ($_SESSION['status'] == 'sukses') { ?>
-                    <div class="alert alert-success" role="alert">
-                        <strong>Sukses!</strong> Data Berhasil Disimpan
-                    </div>
-                <?php
-                            } else { ?>
-                    <div class="alert alert-success" role="alert">
-                        <strong>Sukses!</strong> Data Gagal Disimpan
-                    </div>
-                <?php
+                        if ($_SESSION['status'] == 'sukses') {
+                        ?>
+                            <div class="alert alert-success" role="alert" id="alert-success">
+                                <span id="message-success"></span>
+                            </div>
+                        <?php
+                        } elseif ($_SESSION['status'] == "gagal") {
+                        ?>
+                            <div class="alert alert-success" role="alert" id="alert-warning">
+                                <span id="message-warning"></span>
+                            </div>
+                        <?php
                             }
-                ?>
-                </p>
+                        ?>
+                    </p>
             <?php endif; ?>
             <a class="btn btn-primary" href="tambah-promosi.php" role="button">Tambah Data</a>
             <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
@@ -243,7 +246,7 @@ include '../../config.php';
                                         <td><?php echo $d['publisitas'] ?></td>
                                         <td><?php echo $d['pemasaranlangsung'] ?></td>
                                         <td>
-                                            <a class="btn btn-success" href="edit-promosi.php?id=<?php echo $d['id_promosi']; ?>" data-toggle="tooltip" title="Edit" role="button"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <a class="btn btn-success" href="edit-promosi.php?id=<?php echo $d['kd_promosi']; ?>" data-toggle="tooltip" title="Edit" role="button"><i class="fa-solid fa-pen-to-square"></i></a>
                                             <a class="btn btn-danger" href="../../action/hapus-promosi.php?id=<?php echo $d['kd_promosi']; ?>" data-toggle="tooltip" title="Delete" role="button"><i class="fa-solid fa-trash-can"></i></a>
                                         </td>
                                     </tr>

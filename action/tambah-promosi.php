@@ -336,7 +336,7 @@ if (isset($_POST['simpan'])) {
 
 
     $sql1 = "INSERT INTO kriteria_promosi (id, id_produk, kd_promosi, A1, A2, A3, A4, A5, max) VALUE 
-    ('$id_kt', '$id_produk', '$kd', '$V[0]', '$V[1]', '$V[2]', '$V[3]', '$V[4]', '$max')
+    ('$id_kt', '$id_produk', '$kd1', '$V[0]', '$V[1]', '$V[2]', '$V[3]', '$V[4]', '$max')
     ";
 
     $query = mysqli_query($conn, $sql);
