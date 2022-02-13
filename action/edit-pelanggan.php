@@ -19,10 +19,12 @@ if (isset($_POST['simpan'])) {
     if ($query) {
         // kalau berhasil alihkan ke halaman index.php dengan status=sukses
         $_SESSION['status'] = "sukses";
+        $_SESSION['message'] = "<strong>Sukses!</strong> Data Berhasil Disimpan!";
         header('Location: ../view/Layout-Marketing/form-pelanggan.php');
     } else {
         // kalau gagal alihkan ke halaman indek.php dengan status=gagal
         $_SESSION['status'] = "gagal";
+        $_SESSION['message'] = "<strong>Gagal!</strong> Data Gagal Disimpan!";
         header('Location: ../view/Layout-Marketing/form-pelanggan.php');
     }
 } else {

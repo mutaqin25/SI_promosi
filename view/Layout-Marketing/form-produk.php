@@ -38,11 +38,12 @@ include '../../config.php';
 <body id="page-top">
 
     <?php
-    session_start();
+
 
     // cek apakah yang mengakses halaman ini sudah login
     if ($_SESSION['jenis_user'] !== "marketing") {
-        header("location:../../login.php?pesan=gagal");
+        $_SESSION['status'] = "gagal";
+        header("location:../../login.php");
     }
 
     ?>
@@ -135,10 +136,7 @@ include '../../config.php';
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -156,17 +154,20 @@ include '../../config.php';
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Tabel Data Produk</h1>
                     <p class="mb-4">
-                        <?php if (isset($_GET['status'])) : ?>
+                        <?php if (isset($_SESSION['status'])) : ?>
                     <p>
+                        <!-- alert -->
                         <?php
-                            if ($_SESSION['status'] == 'sukses') { ?>
-                    <div class="alert alert-success" role="alert">
-                        <strong>Sukses!</strong> Data Berhasil Disimpan
+                            if ($_SESSION['status'] == 'sukses') {
+                        ?>
+                    <div class="alert alert-success" role="alert" id="alert-success">
+                        <span id="message-success"></span>
                     </div>
                 <?php
-                            } else { ?>
-                    <div class="alert alert-success" role="alert">
-                        <strong>Sukses!</strong> Data Gagal Disimpan
+                            } elseif ($_SESSION['status'] == "gagal") {
+                ?>
+                    <div class="alert alert-success" role="alert" id="alert-warning">
+                        <span id="message-warning"></span>
                     </div>
                 <?php
                             }
@@ -279,14 +280,39 @@ include '../../config.php';
         $(function() {
             $('[data-toggle="tooltip"]').tooltip()
         })
-
-
-        window.setTimeout(function() {
-            $(".alert").fadeTo(500, 0).slideUp(500, function() {
-                $(this).remove();
-            });
-        }, 5000);
     </script>
+
+    <!-- alert fade Out-->
+    <?php
+
+    if ($_SESSION['status'] == "sukses") {
+    ?>
+        <script>
+            document.getElementById('message-success').innerHTML = "<?= $_SESSION['message']; ?>";
+            window.setTimeout(function() {
+                $("#alert-success").fadeTo(500, 0).slideUp(500, function() {
+                    $(this).remove();
+                });
+            }, 3000);
+        </script>
+    <?php
+        unset($_SESSION['status']);
+        unset($_SESSION['message']);
+    } elseif ($_SESSION['status'] == "gagal") {
+    ?>
+        <script>
+            document.getElementById('message-warning').innerHTML = "<?= $_SESSION['message']; ?>";
+            window.setTimeout(function() {
+                $("#alert-warning").fadeTo(500, 0).slideUp(500, function() {
+                    $(this).remove();
+                });
+            }, 3000);
+        </script>
+    <?php
+        unset($_SESSION['status']);
+        unset($_SESSION['message']);
+    }
+    ?>
 
     <!-- fontawasome -->
     <script src="https://kit.fontawesome.com/f6531d317e.js" crossorigin="anonymous"></script>

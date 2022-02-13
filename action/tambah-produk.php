@@ -31,9 +31,13 @@ if (!in_array($ext, $ekstensi)) {
         $xx = $rand . '_' . $filename;
         move_uploaded_file($_FILES['foto']['tmp_name'], '../images/produk/' . $rand . '_' . $filename);
         mysqli_query($conn, "INSERT INTO produk VALUES('$id', '$id_pengguna', '$nama','$harga','$xx')");
+        $_SESSION['status'] = "sukses";
+        $_SESSION['message'] = "<strong>Sukses!</strong> Data Berhasil Disimpan!";
         header("location:../view/Layout-Marketing/form-produk.php");
         echo mysqli_error($conn);
     } else {
+        $_SESSION['status'] = "gagal";
+        $_SESSION['message'] = "<strong>Gagal!</strong> Data Gagal Disimpan!";
         header("location:../view/Layout-Marketing/form-produk.php");
     }
 }

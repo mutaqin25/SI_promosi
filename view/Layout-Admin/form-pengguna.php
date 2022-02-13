@@ -41,7 +41,8 @@ include '../../config.php';
 
     // cek apakah yang mengakses halaman ini sudah login
     if ($_SESSION['jenis_user'] !== "admin") {
-        header("location:../../login.php?pesan=gagal");
+        $_SESSION['status'] = "gagal";
+        header("location:../../login.php");
     }
 
     ?>
@@ -122,10 +123,7 @@ include '../../config.php';
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -147,21 +145,21 @@ include '../../config.php';
                     <p>
                         <!-- alert -->
                         <?php
-                        if($_SESSION['status'] == 'sukses'){
+                            if ($_SESSION['status'] == 'sukses') {
                         ?>
-                        <div class="alert alert-success" role="alert" id="alert-success">
-                            <span id="message-success"></span>
-                        </div>
-                        <?php
-                        }elseif($_SESSION['status'] == "gagal"){
-                        ?>
-                        <div class="alert alert-success" role="alert"  id="alert-warning">
-                            <span id="message-warning"></span>
-                        </div>
-                        <?php
-                        }
-                        ?>
-                    </p>
+                    <div class="alert alert-success" role="alert" id="alert-success">
+                        <span id="message-success"></span>
+                    </div>
+                <?php
+                            } elseif ($_SESSION['status'] == "gagal") {
+                ?>
+                    <div class="alert alert-success" role="alert" id="alert-warning">
+                        <span id="message-warning"></span>
+                    </div>
+                <?php
+                            }
+                ?>
+                </p>
             <?php endif; ?>
             <a class="btn btn-primary" href="tambah-pengguna.php" role="button">Tambah Data</a>
             </p>
@@ -277,30 +275,30 @@ include '../../config.php';
     <!-- alert fade Out-->
     <?php
 
-    if($_SESSION['status'] == "sukses"){
-        ?>
+    if ($_SESSION['status'] == "sukses") {
+    ?>
         <script>
-            document.getElementById('message-success').innerHTML = "<?=$_SESSION['message'];?>";
+            document.getElementById('message-success').innerHTML = "<?= $_SESSION['message']; ?>";
             window.setTimeout(function() {
                 $("#alert-success").fadeTo(500, 0).slideUp(500, function() {
                     $(this).remove();
                 });
             }, 3000);
         </script>
-        <?php
+    <?php
         unset($_SESSION['status']);
         unset($_SESSION['message']);
-    }elseif($_SESSION['status'] == "gagal"){
-        ?>
+    } elseif ($_SESSION['status'] == "gagal") {
+    ?>
         <script>
-            document.getElementById('message-warning').innerHTML = "<?=$_SESSION['message'];?>";
+            document.getElementById('message-warning').innerHTML = "<?= $_SESSION['message']; ?>";
             window.setTimeout(function() {
                 $("#alert-warning").fadeTo(500, 0).slideUp(500, function() {
                     $(this).remove();
                 });
             }, 3000);
         </script>
-        <?php
+    <?php
         unset($_SESSION['status']);
         unset($_SESSION['message']);
     }
