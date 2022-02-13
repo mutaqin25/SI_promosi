@@ -155,25 +155,25 @@ include '../../config.php';
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Tabel Data Promosi</h1>
                     <p class="mb-4">
-                    <?php if (isset($_SESSION['status'])) : ?>
+                        <?php if (isset($_SESSION['status'])) : ?>
                     <p>
                         <!-- alert -->
                         <?php
-                        if ($_SESSION['status'] == 'sukses') {
+                            if ($_SESSION['status'] == 'sukses') {
                         ?>
-                            <div class="alert alert-success" role="alert" id="alert-success">
-                                <span id="message-success"></span>
-                            </div>
-                        <?php
-                        } elseif ($_SESSION['status'] == "gagal") {
-                        ?>
-                            <div class="alert alert-success" role="alert" id="alert-warning">
-                                <span id="message-warning"></span>
-                            </div>
-                        <?php
+                    <div class="alert alert-success" role="alert" id="alert-success">
+                        <span id="message-success"></span>
+                    </div>
+                <?php
+                            } elseif ($_SESSION['status'] == "gagal") {
+                ?>
+                    <div class="alert alert-success" role="alert" id="alert-warning">
+                        <span id="message-warning"></span>
+                    </div>
+                <?php
                             }
-                        ?>
-                    </p>
+                ?>
+                </p>
             <?php endif; ?>
             <a class="btn btn-primary" href="tambah-promosi.php" role="button">Tambah Data</a>
             <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
@@ -371,7 +371,7 @@ include '../../config.php';
     <!-- alert fade Out-->
     <?php
 
-    if ($_SESSION['status'] == "sukses") {
+    if (isset($_SESSION['status']) == "sukses") {
     ?>
         <script>
             document.getElementById('message-success').innerHTML = "<?= $_SESSION['message']; ?>";
@@ -384,7 +384,7 @@ include '../../config.php';
     <?php
         unset($_SESSION['status']);
         unset($_SESSION['message']);
-    } elseif ($_SESSION['status'] == "gagal") {
+    } elseif (isset($_SESSION['status']) == "gagal") {
     ?>
         <script>
             document.getElementById('message-warning').innerHTML = "<?= $_SESSION['message']; ?>";

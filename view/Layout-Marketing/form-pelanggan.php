@@ -286,7 +286,7 @@ include '../../config.php';
     <!-- alert fade Out-->
     <?php
 
-    if ($_SESSION['status'] == "sukses") {
+    if (isset($_SESSION['status']) == "sukses") {
     ?>
         <script>
             document.getElementById('message-success').innerHTML = "<?= $_SESSION['message']; ?>";
@@ -299,7 +299,7 @@ include '../../config.php';
     <?php
         unset($_SESSION['status']);
         unset($_SESSION['message']);
-    } elseif ($_SESSION['status'] == "gagal") {
+    } elseif (isset($_SESSION['status']) == "gagal") {
     ?>
         <script>
             document.getElementById('message-warning').innerHTML = "<?= $_SESSION['message']; ?>";

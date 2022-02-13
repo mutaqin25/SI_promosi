@@ -145,20 +145,20 @@ include '../../config.php';
                     <p>
                         <!-- alert -->
                         <?php
-                        if ($_SESSION['status'] == 'sukses') {
+                            if ($_SESSION['status'] == 'sukses') {
                         ?>
-                            <div class="alert alert-success" role="alert" id="alert-success">
-                                <span id="message-success"></span>
-                            </div>
-                        <?php
-                        } elseif ($_SESSION['status'] == "gagal") {
-                        ?>
-                            <div class="alert alert-success" role="alert" id="alert-warning">
-                                <span id="message-warning"></span>
-                            </div>
-                        <?php
+                    <div class="alert alert-success" role="alert" id="alert-success">
+                        <span id="message-success"></span>
+                    </div>
+                <?php
+                            } elseif ($_SESSION['status'] == "gagal") {
+                ?>
+                    <div class="alert alert-success" role="alert" id="alert-warning">
+                        <span id="message-warning"></span>
+                    </div>
+                <?php
                             }
-                        ?>
+                ?>
                 </p>
             <?php endif; ?>
             <a class="btn btn-primary" href="tambah-pengguna.php" role="button">Tambah Data</a>
@@ -275,7 +275,7 @@ include '../../config.php';
     <!-- alert fade Out-->
     <?php
 
-    if ($_SESSION['status'] == "sukses") {
+    if (isset($_SESSION['status']) == "sukses") {
     ?>
         <script>
             document.getElementById('message-success').innerHTML = "<?= $_SESSION['message']; ?>";
@@ -288,7 +288,7 @@ include '../../config.php';
     <?php
         unset($_SESSION['status']);
         unset($_SESSION['message']);
-    } elseif ($_SESSION['status'] == "gagal") {
+    } elseif (isset($_SESSION['status']) == "gagal") {
     ?>
         <script>
             document.getElementById('message-warning').innerHTML = "<?= $_SESSION['message']; ?>";
