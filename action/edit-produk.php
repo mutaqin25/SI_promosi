@@ -19,6 +19,8 @@ $ext = pathinfo($filename, PATHINFO_EXTENSION);
 
 if (!in_array($ext, $ekstensi)) {
     mysqli_query($conn, "UPDATE produk SET id_pengguna='$id_pengguna', nama_produk='$nama', harga_produk='$harga' WHERE id_produk='$id_produk'");
+    $_SESSION['status'] = "sukses";
+    $_SESSION['message'] = "<strong>Sukses!</strong> Data Berhasil Disimpan!";
     header("location:../view/Layout-Marketing/form-produk.php");
 } else {
     if ($ukuran < 1044070) {
@@ -26,12 +28,13 @@ if (!in_array($ext, $ekstensi)) {
         move_uploaded_file($_FILES['foto']['tmp_name'], '../images/produk/' . $rand . '_' . $filename);
         mysqli_query($conn, "UPDATE produk SET id_pengguna='$id_pengguna', nama_produk='$nama', harga_produk='$harga', foto='$xx' WHERE id_produk='$id_produk'");
         unlink('../images/produk/' . $foto_lama);
+        $_SESSION['status'] = "sukses";
+        $_SESSION['message'] = "<strong>Sukses!</strong> Data Berhasil Disimpan!";
         header("location:../view/Layout-Marketing/form-produk.php");
         echo mysqli_error($conn);
-    } else if ($ukuran < 1044070 &&  $filename == "") {
-
-        header("location:../view/Layout-Marketing/form-produk.php");
     } else {
+        $_SESSION['status'] = "gagal";
+        $_SESSION['message'] = "<strong>Gagal!</strong> Data Gagal Disimpan!";
         header("location:../view/Layout-Marketing/form-produk.php");
     }
 }
