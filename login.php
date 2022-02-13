@@ -62,13 +62,6 @@
             </div>
           </div>
 
-          <div class="flex-col-c p-t-50">
-            <span class="txt1 p-b-17"> Or Sign Up Using </span>
-
-            <a href="view/Registration/registration.html" class="txt2">
-              Sign Up
-            </a>
-          </div>
         </form>
       </div>
     </div>
@@ -97,24 +90,25 @@
 </body>
 
 <!-- alert login -->
-<?php 
-	if(isset($_GET['pesan'])){
-    if($_GET['pesan']=="gagal"){
-      ?>
-      <script>
-        swal({
-          title: "Failed!",
-          text: "Username dan Password tidak sesuai !",
-          icon: "warning",
-          button: false,
-          timer: 3000,
-        }).then(function() {
-            window.location = "login.php";
-        });
-      </script>
-      <?php
-			// echo "<div class='alert'>Username dan Password tidak sesuai !</div>";
-    }
-  }
+<?php
+if (isset($_GET['pesan'])) {
+  if ($_GET['pesan'] == "gagal") {
 ?>
+    <script>
+      swal({
+        title: "Failed!",
+        text: "Username dan Password tidak sesuai !",
+        icon: "warning",
+        button: false,
+        timer: 3000,
+      }).then(function() {
+        window.location = "login.php";
+      });
+    </script>
+<?php
+    // echo "<div class='alert'>Username dan Password tidak sesuai !</div>";
+  }
+}
+?>
+
 </html>
