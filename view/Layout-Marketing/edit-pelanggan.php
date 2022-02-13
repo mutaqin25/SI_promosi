@@ -1,3 +1,7 @@
+<?
+include '../../config.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +39,6 @@
 <body id="page-top">
 
     <?php
-    session_start();
 
     // cek apakah yang mengakses halaman ini sudah login
     if ($_SESSION['jenis_user'] !== "marketing") {
@@ -154,7 +157,6 @@
                     </div>
                     <div>
                         <?php
-                        include '../../config.php';
                         $id = $_GET['id'];
                         $data = mysqli_query($conn, "select * from pelanggan where id_pelanggan='$id'");
                         while ($d = mysqli_fetch_array($data)) {

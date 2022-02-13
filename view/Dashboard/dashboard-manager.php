@@ -29,8 +29,8 @@ include '../../config.php';
 
     // cek apakah yang mengakses halaman ini sudah login
     if ($_SESSION['jenis_user'] !== "general manager") {
-        $_SESSION['status'] = "gagal";
-        header("location:../../login.php");
+
+        header("location:../../login.php?pesan=gagal");
     }
 
     ?>
