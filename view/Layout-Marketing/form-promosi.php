@@ -244,7 +244,7 @@ include '../../config.php';
                                         <td><?php echo $d['pemasaranlangsung'] ?></td>
                                         <td>
                                             <a class="btn btn-success" href="edit-promosi.php?id=<?php echo $d['id_promosi']; ?>" data-toggle="tooltip" title="Edit" role="button"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            <a class="btn btn-danger" href="../../action/hapus-promosi.php?id=<?php echo $d['id_promosi']; ?>" data-toggle="tooltip" title="Delete" role="button"><i class="fa-solid fa-trash-can"></i></a>
+                                            <a class="btn btn-danger" href="../../action/hapus-promosi.php?id=<?php echo $d['kd_promosi']; ?>" data-toggle="tooltip" title="Delete" role="button"><i class="fa-solid fa-trash-can"></i></a>
                                         </td>
                                     </tr>
                                 <?php

@@ -291,10 +291,6 @@ if (isset($_POST['simpan'])) {
         $id5 = 5;
 
         $kd1 = 1;
-        $kd2 = 2;
-        $kd3 = 3;
-        $kd4 = 4;
-        $kd5 = 5;
     } else {
         $id1 = $no1 + 1;
         $id2 = $no1 + 2;
@@ -303,10 +299,6 @@ if (isset($_POST['simpan'])) {
         $id5 = $no1 + 5;
 
         $kd1 = $no2 + 1;
-        $kd2 = $no2 + 2;
-        $kd3 = $no2 + 3;
-        $kd4 = $no2 + 4;
-        $kd5 = $no2 + 5;
     }
 
 
@@ -314,10 +306,10 @@ if (isset($_POST['simpan'])) {
     // $sql = "INSERT INTO promosi (id_promosi, periklanan, penjualanpersonal, promosipenjualan, publisitas, pemasaranlangsung, id_pengguna) VALUE ('$id', '$periklanan', '$penjualan_per', '$promosi_pen', '$publisitas', '$pemasaran_lan', '$id_pengguna')";
     $sql = "INSERT INTO promosi (id_promosi, periklanan, penjualanpersonal, promosipenjualan, publisitas, pemasaranlangsung, id_pengguna, id_produk, kd_promosi) VALUE 
     ('$id1', '$A1[0]', '$A1[1]', '$A1[2]', '$A1[3]', '$A1[4]', '$id_pengguna', '$id_produk', '$kd1'), 
-    ('$id2', '$A2[0]', '$A2[1]', '$A2[2]', '$A2[3]', '$A2[4]', '$id_pengguna', '$id_produk', '$kd2'), 
-    ('$id3', '$A3[0]', '$A3[1]', '$A3[2]', '$A3[3]', '$A3[4]', '$id_pengguna', '$id_produk', '$kd3'), 
-    ('$id4', '$A4[0]', '$A4[1]', '$A4[2]', '$A4[3]', '$A4[4]', '$id_pengguna', '$id_produk', '$kd4'),
-    ('$id5', '$A5[0]', '$A5[1]', '$A5[2]', '$A5[3]', '$A5[4]', '$id_pengguna', '$id_produk', '$kd5')
+    ('$id2', '$A2[0]', '$A2[1]', '$A2[2]', '$A2[3]', '$A2[4]', '$id_pengguna', '$id_produk', '$kd1'), 
+    ('$id3', '$A3[0]', '$A3[1]', '$A3[2]', '$A3[3]', '$A3[4]', '$id_pengguna', '$id_produk', '$kd1'), 
+    ('$id4', '$A4[0]', '$A4[1]', '$A4[2]', '$A4[3]', '$A4[4]', '$id_pengguna', '$id_produk', '$kd1'),
+    ('$id5', '$A5[0]', '$A5[1]', '$A5[2]', '$A5[3]', '$A5[4]', '$id_pengguna', '$id_produk', '$kd1')
     ";
 
     // Mencari nilai maksimal

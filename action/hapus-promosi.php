@@ -5,12 +5,15 @@ if (isset($_GET['id]']) == "") {
 
     $id = $_GET['id'];
 
-    $sql = "DELETE FROM promosi WHERE id_promosi=$id";
-    $query = mysqli_query($conn, $sql);
+    $sql1 = "DELETE FROM promosi WHERE kd_promosi=$id";
+    $query1 = mysqli_query($conn, $sql1);
 
-    if ($query) {
+    $sql2 = "DELETE FROM kriteria_promosi WHERE kd_promosi=$id";
+    $query2 = mysqli_query($conn, $sql2);
+
+    if ($query1 && $query2) {
         // kalau berhasil alihkan ke halaman index.php dengan status=sukses
-        $_SESSION['status'] = "sukses";
+        // $_SESSION['status'] = "sukses";
         header('Location: ../view/Layout-Marketing/form-promosi.php');
     } else {
         // kalau gagal alihkan ke halaman indek.php dengan status=gagal
