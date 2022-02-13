@@ -320,7 +320,7 @@ if (isset($_POST['simpan'])) {
 
     // buat tabelnya
     $sql1 = "INSERT INTO kriteria_promosi (id, id_pomosi, id_produk, A1, A2, A3, A4, A5, max) VALUE 
-    ('$id', '$A1[0]', '$A1[1]', '$A1[2]', '$A1[3]', '$A1[4]', '$id_pengguna'), 
+    ('$id', '$A1[0]', '$A1[1]', '$A1[2]', '$A1[3]', '$A1[4]', '$max'), 
     ";
 
     $query = mysqli_query($conn, $sql);
