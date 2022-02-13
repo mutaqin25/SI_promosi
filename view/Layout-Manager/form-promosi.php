@@ -63,7 +63,7 @@ include '../../config.php';
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="../Dashboard/dashboard-manager.php">
+                <a class="nav-link" href="../Dashboard/dashboard-marketing.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -167,7 +167,23 @@ include '../../config.php';
                 ?>
                 </p>
             <?php endif; ?>
-            <a class="btn btn-success" href="hitung-promosi.php" role="button">Hitung Data</a>
+
+            <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+                <select style="width: 30%;" required name="kd_produk" class="custom-select my-1 mr-sm-2">
+                    <option>Pilih Produk....</option>
+                    <?php
+                    $no = 0;
+                    $data = mysqli_query($conn, "select * from produk");
+                    while ($d = mysqli_fetch_array($data)) {
+                        $no++;
+                    ?>
+                        <!-- <option selected>Choose...</option> -->
+                        <option value=" <? echo $d['id_produk']; ?>"><? echo $d['nama_produk']; ?></option>
+                    <?php
+                    } ?>
+                </select>
+                <button type="submit" class="btn btn-primary" name="tampil" value="tampil">Tampilkan</button>
+            </form>
             </p>
 
             <!-- DataTales Example -->
@@ -204,7 +220,12 @@ include '../../config.php';
                             <tbody>
                                 <?php
                                 $no = 1;
-                                $data = mysqli_query($conn, "select * from promosi");
+                                if (isset($_POST['tampil'])) {
+                                    $id = $_POST['kd_produk'];
+                                    $data = mysqli_query($conn, "select * from promosi where id_produk = $id");
+                                } else {
+                                    $data = mysqli_query($conn, "select * from promosi");
+                                }
                                 while ($d = mysqli_fetch_array($data)) {
                                 ?>
                                     <tr>
@@ -223,6 +244,68 @@ include '../../config.php';
                     </div>
                 </div>
             </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Data Perhitungan Topsis</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>periklanan</th>
+                                    <th>Penjualan Personal</th>
+                                    <th>Promosi Penjualan</th>
+                                    <th>Publisitas</th>
+                                    <th>Pemasaran Langsung</th>
+                                    <th style="background-color: greenyellow; color: black;">Max</th>
+
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>No</th>
+                                    <th>periklanan</th>
+                                    <th>Penjualan Personal</th>
+                                    <th>Promosi Penjualan</th>
+                                    <th>publisitas</th>
+                                    <th rowspan="2">
+                                        Pemasaran Langsung
+                                    </th>
+                                    <th style="background-color: greenyellow; color: black;">Max</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <?php
+                                $no = 1;
+                                if (isset($_POST['tampil'])) {
+                                    $id = $_POST['kd_produk'];
+                                    $data = mysqli_query($conn, "select * from kriteria_promosi where id_produk = $id");
+                                } else {
+                                    $data = mysqli_query($conn, "select * from kriteria_promosi");
+                                }
+                                while ($d = mysqli_fetch_array($data)) {
+                                ?>
+                                    <tr>
+                                        <td><?php echo $no++ ?></td>
+                                        <td><?php echo $d['A1'] ?></td>
+                                        <td><?php echo $d['A2'] ?></td>
+                                        <td><?php echo $d['A3'] ?></td>
+                                        <td><?php echo $d['A4'] ?></td>
+                                        <td><?php echo $d['A5'] ?></td>
+                                        <td style="background-color: greenyellow; color: black;"><?php echo $d['max'] ?></td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
 
                 </div>
                 <!-- /.container-fluid -->
@@ -271,18 +354,7 @@ include '../../config.php';
         </div>
     </div>
 
-    <script>
-        $(function() {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
 
-
-        window.setTimeout(function() {
-            $(".alert").fadeTo(500, 0).slideUp(500, function() {
-                $(this).remove();
-            });
-        }, 5000);
-    </script>
 
     <!-- fontawasome -->
     <script src="https://kit.fontawesome.com/f6531d317e.js" crossorigin="anonymous"></script>

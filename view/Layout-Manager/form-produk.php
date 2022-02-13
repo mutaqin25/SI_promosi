@@ -38,7 +38,6 @@ include '../../config.php';
 <body id="page-top">
 
     <?php
-    session_start();
 
     // cek apakah yang mengakses halaman ini sudah login
     if ($_SESSION['jenis_user'] !== "general manager") {

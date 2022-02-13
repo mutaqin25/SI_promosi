@@ -1,6 +1,5 @@
 <?php
 include '../config.php';
-session_start();
 
 if (isset($_POST['simpan'])) {
     // menangkap data yang di kirim dari form

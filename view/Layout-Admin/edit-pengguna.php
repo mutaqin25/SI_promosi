@@ -1,3 +1,6 @@
+<?php
+include '../../config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,12 +38,12 @@
 <body id="page-top">
 
     <?php
-    session_start();
+
 
     // cek apakah yang mengakses halaman ini sudah login
     if ($_SESSION['jenis_user'] !== "admin") {
-        $_SESSION['status'] = "gagal";
-        header("location:../../login.php");
+
+        header("location:../../login.php?pesan=gagal");
     }
 
     ?>
@@ -143,7 +146,6 @@
                     <div>
 
                         <?php
-                        include '../../config.php';
                         $id = $_GET['id'];
                         $data = mysqli_query($conn, "select * from pengguna where id_pengguna='$id'");
                         while ($d = mysqli_fetch_array($data)) {
