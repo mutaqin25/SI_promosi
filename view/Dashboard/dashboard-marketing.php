@@ -17,6 +17,10 @@ include '../../config.php';
 
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
 
+    <!--jika ingin menggunakan fontawesome  secara offline aktifkan link dibawah-->
+    <!-- <link href="../../assets/fontawesome/css/all.css" rel="stylesheet"> -->
+    <!--  -->
+
     <!-- Custom styles for this template-->
     <link href="../../css/sb-admin-2.min.css" rel="stylesheet" />
 </head>
@@ -159,7 +163,7 @@ include '../../config.php';
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="font-size: 16px;">
                                                 Data Produk</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: 20px;"><? echo $total ?></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: 20px;"><?php echo $total ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa-solid fa-basket-shopping"></i>
@@ -183,7 +187,7 @@ include '../../config.php';
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="font-size: 16px;">
                                                 Data Promosi</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: 20px;"><? echo $total ?></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: 20px;"><?php echo $total ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa-solid fa-tags"></i>
@@ -208,7 +212,7 @@ include '../../config.php';
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" style="font-size: 20px;"><? echo $total ?></div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" style="font-size: 20px;"><?php echo $total ?></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -233,7 +237,7 @@ include '../../config.php';
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1" style="font-size: 16px;">
                                                 Data Pengguna</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: 20px;"><? echo $total ?></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="font-size: 20px;"><?php echo $total ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa-solid fa-users"></i>

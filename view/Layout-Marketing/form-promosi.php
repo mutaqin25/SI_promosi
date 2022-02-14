@@ -13,12 +13,9 @@ include '../../config.php';
 
     <title>Tabel Data Promosi</title>
 
-    <!-- Custom fonts for this template-->
-    <!-- <link
-      href="../../vendor/fontawesome-free/css/all.min.css"
-      rel="stylesheet"
-      type="text/css"
-    /> -->
+    <!--jika ingin menggunakan fontawesome  secara offline aktifkan link dibawah-->
+    <!-- <link href="../../assets/fontawesome/css/all.css" rel="stylesheet"> -->
+    <!--  -->
 
     <!-- Custom fonts for this template -->
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

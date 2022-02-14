@@ -13,16 +13,15 @@ include '../../config.php';
 
     <title>Edit Data Pengguna</title>
 
-    <!-- Custom fonts for this template-->
-    <!-- <link
-      href="../../vendor/fontawesome-free/css/all.min.css"
-      rel="stylesheet"
-      type="text/css"
-    /> -->
+
 
     <!-- Custom fonts for this template -->
-    <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!--jika ingin menggunakan fontawesome  secara offline aktifkan link dibawah-->
+    <!-- <link href="../../assets/fontawesome/css/all.css" rel="stylesheet"> -->
+    <!--  -->
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -169,13 +168,13 @@ include '../../config.php';
                                     <div class="col-sm-5">
                                         <select name="jenis_user" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
                                             <option>Choose...</option>
-                                            <option value="admin" <? if ($d['jenis_user'] == "admin") {
+                                            <option value="admin" <?php if ($d['jenis_user'] == "admin") {
                                                                         echo "selected";
                                                                     } ?>>Admin</option>
-                                            <option value="general manager" <? if ($d['jenis_user'] == "general manager") {
+                                            <option value="general manager" <?php if ($d['jenis_user'] == "general manager") {
                                                                                 echo "selected";
                                                                             } ?>>General Manager</option>
-                                            <option value="marketing" <? if ($d['jenis_user'] == "marketing") {
+                                            <option value="marketing" <?php if ($d['jenis_user'] == "marketing") {
                                                                             echo "selected";
                                                                         } ?>>Marketing</option>
                                         </select>
@@ -201,7 +200,7 @@ include '../../config.php';
                                     </div>
                                 </div>
                             </form>
-                        <?
+                        <?php
                         }
                         ?>
                     </div>

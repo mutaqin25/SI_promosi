@@ -1,4 +1,4 @@
-<?
+<?php
 include '../../config.php';
 ?>
 
@@ -165,8 +165,8 @@ include '../../config.php';
                                 <div class="form-group row">
                                     <label for="" class="col-sm-2 col-form-label">Nama</label>
                                     <div class="col-sm-5">
-                                        <input type="text" name="id_produk" value="<? echo $d['id_produk'] ?>" required class=" form-control" placeholder=" Nama" hidden>
-                                        <input type="text" name="nama" value="<? echo $d['nama_produk'] ?>" required class="form-control" placeholder=" Nama">
+                                        <input type="text" name="id_produk" value="<?php echo $d['id_produk'] ?>" required class=" form-control" placeholder=" Nama" hidden>
+                                        <input type="text" name="nama" value="<?php echo $d['nama_produk'] ?>" required class="form-control" placeholder=" Nama">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -174,7 +174,7 @@ include '../../config.php';
                                     <div class="col-sm-5">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="validationTooltipUsernamePrepend">Rp</span>
-                                            <input type="number" name="harga" value="<? echo $d['harga_produk'] ?>" required class="form-control" placeholder="harga">
+                                            <input type="number" name="harga" value="<?php echo $d['harga_produk'] ?>" required class="form-control" placeholder="harga">
                                         </div>
                                     </div>
                                 </div>
@@ -182,7 +182,7 @@ include '../../config.php';
                                     <label for="" class="col-sm-2 col-form-label">Foto</label>
                                     <div class="col-sm-5">
                                         <div class="input-group-prepend">
-                                            <input type="hidden" name="foto_lama" value="<? echo $d['foto'] ?>" required class=" form-control">
+                                            <input type="hidden" name="foto_lama" value="<?php echo $d['foto'] ?>" required class=" form-control">
                                             <input type="file" name="foto" class="form-control" placeholder="File">
                                             <span class="input-group-text" id="validationTooltipUsernamePrepend">Browser</span>
                                         </div>
@@ -197,7 +197,7 @@ include '../../config.php';
                                     </div>
                                 </div>
                             </form>
-                        <?
+                        <?php
                         }
                         ?>
                     </div>

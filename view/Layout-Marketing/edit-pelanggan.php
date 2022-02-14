@@ -1,4 +1,4 @@
-<?
+<?php
 include '../../config.php';
 ?>
 
@@ -189,7 +189,7 @@ include '../../config.php';
                                     </div>
                                 </div>
                             </form>
-                        <?
+                        <?php
                         }
                         ?>
                     </div>

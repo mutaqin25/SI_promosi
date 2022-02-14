@@ -1,4 +1,4 @@
-<?
+<?php
 include '../../config.php';
 ?>
 <!DOCTYPE html>
@@ -161,7 +161,7 @@ include '../../config.php';
                                     $no++;
                                 ?>
                                     <!-- <option selected>Choose...</option> -->
-                                    <option value=" <? echo $d['id_produk']; ?>"><? echo $d['nama_produk']; ?></option>
+                                    <option value=" <?php echo $d['id_produk']; ?>"><?php echo $d['nama_produk']; ?></option>
                                 <?php
                                 } ?>
                             </select>

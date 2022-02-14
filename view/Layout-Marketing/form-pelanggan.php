@@ -13,12 +13,9 @@ include '../../config.php';
 
     <title>Form Pelanggan</title>
 
-    <!-- Custom fonts for this template-->
-    <!-- <link
-      href="../../vendor/fontawesome-free/css/all.min.css"
-      rel="stylesheet"
-      type="text/css"
-    /> -->
+    <!--jika ingin menggunakan fontawesome  secara offline aktifkan link dibawah-->
+    <link href="../../assets/fontawesome/css/all.css" rel="stylesheet">
+    <!--  -->
 
     <!-- Custom fonts for this template -->
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -316,7 +313,7 @@ include '../../config.php';
     ?>
 
     <!-- fontawasome -->
-    <script src="https://kit.fontawesome.com/f6531d317e.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/f6531d317e.js" crossorigin="anonymous"></script> -->
 
     <!-- Bootstrap core JavaScript-->
     <script src="../../vendor/jquery/jquery.min.js"></script>
