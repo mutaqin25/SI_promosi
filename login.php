@@ -55,8 +55,11 @@
             </p>
           </div>
 
+
+
           <div class="container-login100-form-btn">
             <div class="wrap-login100-form-btn">
+
               <div class="login100-form-bgbtn"></div>
               <button class="login100-form-btn">Login</button>
             </div>
@@ -106,7 +109,7 @@ if (isset($_GET['pesan'])) {
       });
     </script>
 <?php
-    // echo "<div class='alert'>Username dan Password tidak sesuai !</div>";
+    echo "<div class='alert'>Username dan Password tidak sesuai !</div>";
   }
 }
 ?>

@@ -26,7 +26,9 @@ if (!in_array($ext, $ekstensi)) {
     if ($ukuran < 1044070) {
         $xx = $rand . '_' . $filename;
         move_uploaded_file($_FILES['foto']['tmp_name'], '../images/produk/' . $rand . '_' . $filename);
+
         mysqli_query($conn, "UPDATE produk SET id_pengguna='$id_pengguna', nama_produk='$nama', harga_produk='$harga', foto='$xx' WHERE id_produk='$id_produk'");
+
         unlink('../images/produk/' . $foto_lama);
         $_SESSION['status'] = "sukses";
         $_SESSION['message'] = "<strong>Sukses!</strong> Data Berhasil Disimpan!";
